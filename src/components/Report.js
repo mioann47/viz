@@ -6,6 +6,8 @@ import CardItem from './cards/CardItem';
 import Topbar from './Topbar';
 import SectionHeader from './typo/SectionHeader';
 import Typography from '@material-ui/core/Typography';
+
+import ScrollUpButton from "react-scroll-up-button";
 const backgroundShape = require('../images/shape.svg');
 
 const styles = theme => ({
@@ -48,6 +50,7 @@ class Report extends Component {
     return (
       <React.Fragment>
         <CssBaseline />
+        <ScrollUpButton />
         <Topbar currentPath={currentPath} />
         <div className={classes.root}>
           <Grid container justify="center" spacing={24}>

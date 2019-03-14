@@ -7,7 +7,7 @@ import Topbar from './Topbar';
 import SectionHeader from './typo/SectionHeader';
 import Typography from '@material-ui/core/Typography';
 import { Card } from '@material-ui/core';
-
+import ScrollUpButton from "react-scroll-up-button";
 import Paper from '@material-ui/core/Paper';
 const backgroundShape = require('../images/shape.svg');
 
@@ -96,6 +96,8 @@ class Cleaning extends Component {
 
     return (
       <React.Fragment>
+        
+        <ScrollUpButton />
         <CssBaseline />
         <Topbar currentPath={currentPath} />
         <div className={classes.root}>

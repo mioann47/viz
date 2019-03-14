@@ -1,28 +1,12 @@
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import Slider from '@material-ui/lab/Slider';
 import Button from '@material-ui/core/Button';
-import Avatar from '@material-ui/core/Avatar';
-import SimpleLineChart from './SimpleLineChart';
-import Months from './common/Months';
-import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
-import Loading from './common/Loading';
 import Topbar from './Topbar';
 import { Card } from '@material-ui/core';
-import {
-  Map, TileLayer, Marker, Popup, CircleMarker,
-  Circle,
-  FeatureGroup,
-  LayerGroup,
-  LayersControl,
-  Rectangle
-} from 'react-leaflet'
-import Control from 'react-leaflet-control';
 import myData from '../csvjson.json';
 import L from 'leaflet'
 import InputLabel from "@material-ui/core/InputLabel";
@@ -32,15 +16,12 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Select from "@material-ui/core/Select";
 import Checkbox from "@material-ui/core/Checkbox";
 import Input from "@material-ui/core/Input";
-import Chart from "../components/charts/Chart"
 import CardHeader from '@material-ui/core/CardHeader';
 
-import DialogContent from '@material-ui/core/DialogContent';
 
 import Dialog from '@material-ui/core/Dialog';
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -52,12 +33,8 @@ import ScrollUpButton from "react-scroll-up-button";
 import CountriesFuelTypeHorizontalStackedBar from './D3Graphs/CountriesFuelTypeHorizontalStackedBar'
 import FuelTypeCountryBarChart from './D3Graphs/FuelTypeCountryBarChart'
 import ScatterPlot from './D3Graphs/ScatterPlot'
-import { red } from '@material-ui/core/colors';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 import * as d3 from "d3"
 import './legend.css'
-import Fab from '@material-ui/core/Fab';
 import ArrowRightAlt from '@material-ui/icons/ArrowRightAlt';
 import LoadingOverlay from 'react-loading-overlay';
 
@@ -217,16 +194,9 @@ const MenuProps = {
     horizontal: "left"
   }
 };
-function TabContainer(props) {
-  return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
-      {props.children}
-    </Typography>
-  );
-}
 
 const FUEL = ["Hydro", "Gas", "Other", "Oil", "Wind", "Coal", "Nuclear", "Solar", "Waste", "Biomass", "Petcoke", "Geothermal", "Cogeneration", "Wave and Tidal"]
-class Dashboard extends Component {
+class Visualization extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -289,8 +259,6 @@ class Dashboard extends Component {
       renderer: L.canvas({ padding: 0.5 })
     }).setView(position, this.state.zoom);
 
-    var mapLink = L.tileLayer('https://tile.thunderforest.com/neighbourhood/{z}/{x}/{y}.png?apikey=9a25d418d50d4824bbeb1ca4efd119d6')
-      .addTo(map);
 
     var svgLayer = L.svg({ clickable: true })
 
@@ -317,7 +285,6 @@ class Dashboard extends Component {
     const self = this
     var svg = d3.select("#map").select("svg")
       .attr("pointer-events", "auto")
-    var g = svg.select('g')
 
     var feature = svg.selectAll("g")
       .data(data)
@@ -356,9 +323,7 @@ class Dashboard extends Component {
     const self = this
     var svg = d3.select("#map").select("svg")
       .attr("pointer-events", "auto")
-    var g = svg.selectAll('g')
 
-    var feature = svg.selectAll("circle").remove()
     this.initMarkers(self.state.map, data)
 
     this.updateMap()
@@ -399,7 +364,6 @@ class Dashboard extends Component {
   }
 
   filterData(countries, fueltypes) {
-    const self = this
     if (countries == null) {
       countries = this.state.renderedCountries;
     }
@@ -407,7 +371,7 @@ class Dashboard extends Component {
       fueltypes = this.state.fuels;
     }
 
-    var x = myData.filter((e, i) => {
+    var x = myData.filter((e) => {
       //console.log(event.target.value.indexOf(e.country))
       var exists = countries.some(c => {
         return c.abv === e.country;
@@ -471,7 +435,7 @@ class Dashboard extends Component {
 
   handleSelectAllFuels(val) {
     if (val) {
-      var x = myData.filter((e, i) => {
+      var x = myData.filter((e) => {
         //console.log(event.target.value.indexOf(e.country))
         var exists = this.state.renderedCountries.some(c => {
           return c.abv === e.country;
@@ -487,8 +451,6 @@ class Dashboard extends Component {
   }
 
   renderMap() {
-    const { classes } = this.props;
-    const position = [this.state.lat, this.state.lng];
     const mapStyle = {
       height: "80vh",
     };
@@ -810,7 +772,7 @@ class Dashboard extends Component {
 
 
 
-  handleDeselectCountry = event => {
+  handleDeselectCountry = () => {
     if (this.state.selectedCountryLayer) {
       this.state.map.removeLayer(this.state.selectedCountryLayer);
     }
@@ -1030,7 +992,6 @@ scrollToMap(){
   render() {
     const { classes } = this.props;
     const currentPath = this.props.location.pathname;
-    const { value } = this.state;
 
     return (
       <React.Fragment>
@@ -1150,4 +1111,4 @@ scrollToMap(){
   }
 }
 
-export default withRouter(withStyles(styles)(Dashboard));
+export default withRouter(withStyles(styles)(Visualization));
