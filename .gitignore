@@ -1,0 +1,10 @@
+node_modules
+build
+
+conf/authnginx/htpasswd
+.firebase/hosting.YnVpbGQ.cache
+.firebaserc
+screenshot-signup.png
+screenshot-cards.png
+screenshot-dashboard.png
+screenshot-wizard.png

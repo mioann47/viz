@@ -1,0 +1,9 @@
+svg text.label {
+    font: 8px;  
+    font-weight: 300;
+    text-anchor: middle;
+  }
+  .bar:hover {
+    fill: steelblue;
+  }
+  
