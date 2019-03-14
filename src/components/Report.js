@@ -200,6 +200,9 @@ class Report extends Component {
 <p>
     Node.js
 </p>
+<p>
+    Firebase
+</p>
 <br /><br /><br /><br />
 <a href="https://github.com/mioann47/viz">CODE ON GITHUB</a><br />
                   mi1e18@soton.ac.uk
