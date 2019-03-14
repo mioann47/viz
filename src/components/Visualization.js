@@ -258,13 +258,14 @@ class Visualization extends Component {
       preferCanvas: true,
       renderer: L.canvas({ padding: 0.5 })
     }).setView(position, this.state.zoom);
-
+    var mapLink = L.tileLayer('https://tile.thunderforest.com/neighbourhood/{z}/{x}/{y}.png?apikey=9a25d418d50d4824bbeb1ca4efd119d6')
+    .addTo(map);
 
     var svgLayer = L.svg({ clickable: true })
 
     svgLayer.addTo(map)
 
-    //code from http://www.geonet.ch/basic-leaflet-map-with-d3-overlay/
+    
    
 
 
