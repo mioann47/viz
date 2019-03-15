@@ -180,7 +180,7 @@ class Cleaning extends Component {
                 'AZ' -&gt; 'AZE' (Correct abbreviation for Azerbaijan)
 </p>
               <p>
-                'Chile ' and 'CH ' -&gt; 'CHL' (Correct abbreviation for South Africa)
+                'Chile ' and 'CH ' -&gt; 'CHL' (Correct abbreviation for Chile)
 </p>
               <p>
                 ' kor ' and ' S-KOR ' -&gt; 'KOR' (Correct abbreviation for South Korea)
